@@ -6,6 +6,6 @@ namespace Gamma.Proxy
 {
     interface ISocketsHolder
     {
-        ProxySocket GetSocket(short port);
+        ProxySocket GetSocket(int port);
     }
 }

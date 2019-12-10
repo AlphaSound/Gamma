@@ -11,7 +11,7 @@ namespace Gamma.Proxy
 {
     class ProxySocket : IDisposable
     {
-        public short Port { get; }
+        public int Port { get; }
 
         protected UdpClient Socket { get; private set; }
         protected BlockingCollection<(IPEndPoint, byte[])> SendQueue { get; }
@@ -58,7 +58,7 @@ namespace Gamma.Proxy
             RWLock = new ReaderWriterLockSlim();
             UpdateTime = DateTime.Now;
 
-            Port = (short)bindAddress.Port;
+            Port = bindAddress.Port;
             Socket = new UdpClient(bindAddress);
             Socket.DontFragment = true;
             Socket.Client.ReceiveBufferSize = 5 * 1024 * 1024;

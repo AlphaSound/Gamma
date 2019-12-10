@@ -8,11 +8,11 @@ namespace Gamma.Proxy
     {
         public static readonly string ServerAddress;
 
-        public static readonly short ServerPort;
+        public static readonly int ServerPort;
 
         public static readonly string ProxyAddress;
 
-        public static readonly short ProxyPort;
+        public static readonly int ProxyPort;
 
         static Config()
         {
@@ -21,9 +21,9 @@ namespace Gamma.Proxy
                 .AddXmlFile("RIProxy.config")
                 .Build();
             ServerAddress = configuration["ServerAddress"];
-            ServerPort = short.Parse(configuration["ServerPort"]);
+            ServerPort = int.Parse(configuration["ServerPort"]);
             ProxyAddress = configuration["ProxyAddress"];
-            ProxyPort = short.Parse(configuration["ProxyPort"]);
+            ProxyPort = int.Parse(configuration["ProxyPort"]);
         }
     }
 }

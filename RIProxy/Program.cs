@@ -14,7 +14,7 @@ namespace Gamma.Proxy
         {
             var serverAddress = new IPEndPoint(IPAddress.Parse(Config.ServerAddress), Config.ServerPort);
             var proxyAddress = new IPEndPoint(IPAddress.Parse(Config.ProxyAddress), Config.ProxyPort);
-            var availablePorts = new short[] { Config.ProxyPort }.Concat(Enumerable.Range(55000, 55010).Select(d => (short)d));
+            var availablePorts = Enumerable.Range(55000, 10);
             using (var riproxy = new RIProxy(serverAddress, proxyAddress, availablePorts))
             {
                 Console.WriteLine("Proxy started...");

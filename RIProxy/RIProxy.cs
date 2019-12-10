@@ -14,31 +14,31 @@ namespace Gamma.Proxy
         protected readonly IPEndPoint ProxyAddress;
 
         protected Router Router { get; }
-        protected ConcurrentQueue<short> AvailablePorts { get; }
-        protected ConcurrentDictionary<short, ProxySocket> Sockets { get; }
-        protected ConcurrentDictionary<IPEndPoint, short> Clients { get; }
+        protected ConcurrentQueue<int> AvailablePorts { get; }
+        protected ConcurrentDictionary<int, ProxySocket> Sockets { get; }
+        protected ConcurrentDictionary<IPEndPoint, int> Clients { get; }
 
-        public RIProxy(IPEndPoint server, IPEndPoint proxy, IEnumerable<short> availablePorts)
+        public RIProxy(IPEndPoint server, IPEndPoint proxy, IEnumerable<int> availablePorts)
         {
             ServerAddress = server;
             ProxyAddress = proxy;
             Router = new Router(this, this);
-            AvailablePorts = new ConcurrentQueue<short>();
-            AvailablePorts.Enqueue((short)proxy.Port);
+            AvailablePorts = new ConcurrentQueue<int>();
+            AvailablePorts.Enqueue(proxy.Port);
             foreach (var port in availablePorts)
                 AvailablePorts.Enqueue(port);
-            Clients = new ConcurrentDictionary<IPEndPoint, short>();
-            Sockets = new ConcurrentDictionary<short, ProxySocket>();
+            Clients = new ConcurrentDictionary<IPEndPoint, int>();
+            Sockets = new ConcurrentDictionary<int, ProxySocket>();
             AllocPort();
         }
 
-        public ProxySocket GetSocket(short port) => Sockets[port];
+        public ProxySocket GetSocket(int port) => Sockets[port];
 
         protected ProxySocket AllocPort()
         {
             if (AvailablePorts.Count == 0)
                 throw new Exception("No available ports");
-            if (AvailablePorts.TryDequeue(out short port))
+            if (AvailablePorts.TryDequeue(out int port))
             {
                 var bind = new IPEndPoint(ProxyAddress.Address, port);
                 var socket = new ProxySocket(bind, Router);
@@ -49,7 +49,7 @@ namespace Gamma.Proxy
             throw new Exception("Failed port allocating");
         }
 
-        protected async Task ReleasePort(short port)
+        protected async Task ReleasePort(int port)
         {
             if(Sockets.TryGetValue(port, out ProxySocket socket))
             {
@@ -58,10 +58,19 @@ namespace Gamma.Proxy
             }
         }
 
-        public bool Handle(IPEndPoint address, short socketPort, byte[] payload)
+        public bool Handle(IPEndPoint address, int socketPort, byte[] payload)
         {
             if (address.Equals(ServerAddress))//from Server
             {
+                if(payload[0] == 0x1c)
+                {
+                    Task.Run(() =>
+                    {
+                        System.Threading.Thread.Sleep(50);
+                        Router.RemoveRoute(address, socketPort, out (IPEndPoint, int) _);
+                        Router.RemoveRoute(Clients.First(d => d.Value == socketPort).Key, socketPort, out (IPEndPoint, int) _);
+                    });
+                }
                 return true;
             }
             else//from Client

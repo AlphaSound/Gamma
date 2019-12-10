@@ -7,6 +7,6 @@ namespace Gamma.Proxy
 {
     interface IPacketHandler
     {
-        bool Handle(IPEndPoint address, short socketPort, byte[] payload);
+        bool Handle(IPEndPoint address, int socketPort, byte[] payload);
     }
 }
