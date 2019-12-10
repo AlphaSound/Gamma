@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29403.142
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RIProxy", "RIProxy\RIProxy.csproj", "{561248C9-5E1F-48FF-88E2-124E154908EC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{561248C9-5E1F-48FF-88E2-124E154908EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{561248C9-5E1F-48FF-88E2-124E154908EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{561248C9-5E1F-48FF-88E2-124E154908EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{561248C9-5E1F-48FF-88E2-124E154908EC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B956E4E5-5DCC-4572-8974-42ABB966A003}
+	EndGlobalSection
+EndGlobal
