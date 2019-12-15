@@ -58,19 +58,10 @@ namespace Gamma.Proxy
             }
         }
 
-        public bool Handle(IPEndPoint address, int socketPort, byte[] payload)
+        public bool HandleBeforeRouting(IPEndPoint address, int socketPort, byte[] payload)
         {
             if (address.Equals(ServerAddress))//from Server
             {
-                if(payload[0] == 0x1c)
-                {
-                    Task.Run(() =>
-                    {
-                        System.Threading.Thread.Sleep(50);
-                        Router.RemoveRoute(address, socketPort, out (IPEndPoint, int) _);
-                        Router.RemoveRoute(Clients.First(d => d.Value == socketPort).Key, socketPort, out (IPEndPoint, int) _);
-                    });
-                }
                 return true;
             }
             else//from Client
@@ -86,6 +77,18 @@ namespace Gamma.Proxy
                 }
                 //
                 return true;
+            }
+        }
+
+        public void HandleAfterRouting(IPEndPoint address, int socketPort, byte[] payload)
+        {
+            if (address.Equals(ServerAddress))
+            {
+                if(payload[0] == 0x1c)
+                {
+                    Router.RemoveRoute(address, socketPort, out (IPEndPoint, int) _);
+                    Router.RemoveRoute(Clients.First(d => d.Value == socketPort).Key, socketPort, out (IPEndPoint, int) _);
+                }
             }
         }
 

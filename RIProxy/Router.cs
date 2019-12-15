@@ -21,12 +21,13 @@ namespace Gamma.Proxy
 
         public void Send(IPEndPoint source, int from, byte[] payload)
         {
-            if(Handler.Handle(source, from, payload))
+            if(Handler.HandleBeforeRouting(source, from, payload))
             {
                 if (Routes.TryGetValue((source, from), out (IPEndPoint Dest, int To) route))
                 {
                     SocketsHolder.GetSocket(route.To).Send(route.Dest, payload);
                 }
+                Handler.HandleAfterRouting(source, from, payload);
             }
         }
 
