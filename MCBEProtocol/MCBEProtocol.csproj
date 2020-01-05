@@ -1,0 +1,33 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>false</Optimize>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Minecraft\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ZeroFormatter.Analyzer" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ZeroFormatter">
+      <HintPath>..\..\..\working\ZeroFormatter\src\ZeroFormatter\bin\Debug\ZeroFormatter.dll</HintPath>
+    </Reference>
+    <Reference Include="ZeroFormatter.Interfaces">
+      <HintPath>..\..\..\working\ZeroFormatter\src\ZeroFormatter\bin\Debug\ZeroFormatter.Interfaces.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

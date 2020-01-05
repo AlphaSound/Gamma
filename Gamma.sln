@@ -3,18 +3,37 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29403.142
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RIProxy", "RIProxy\RIProxy.csproj", "{561248C9-5E1F-48FF-88E2-124E154908EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RIProxy", "RIProxy\RIProxy.csproj", "{561248C9-5E1F-48FF-88E2-124E154908EC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MCBEProtocol", "MCBEProtocol\MCBEProtocol.csproj", "{476E23E0-14F8-4EF2-BD6A-B5DFFB95783F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MCBEProtocol.Test", "MCBEProtocol.Test\MCBEProtocol.Test.csproj", "{96885E9B-7E5A-4AC6-8657-45E0AF768272}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+		Unity|Any CPU = Unity|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{561248C9-5E1F-48FF-88E2-124E154908EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{561248C9-5E1F-48FF-88E2-124E154908EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{561248C9-5E1F-48FF-88E2-124E154908EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{561248C9-5E1F-48FF-88E2-124E154908EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{561248C9-5E1F-48FF-88E2-124E154908EC}.Unity|Any CPU.ActiveCfg = Release|Any CPU
+		{561248C9-5E1F-48FF-88E2-124E154908EC}.Unity|Any CPU.Build.0 = Release|Any CPU
+		{476E23E0-14F8-4EF2-BD6A-B5DFFB95783F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{476E23E0-14F8-4EF2-BD6A-B5DFFB95783F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{476E23E0-14F8-4EF2-BD6A-B5DFFB95783F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{476E23E0-14F8-4EF2-BD6A-B5DFFB95783F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{476E23E0-14F8-4EF2-BD6A-B5DFFB95783F}.Unity|Any CPU.ActiveCfg = Release|Any CPU
+		{476E23E0-14F8-4EF2-BD6A-B5DFFB95783F}.Unity|Any CPU.Build.0 = Release|Any CPU
+		{96885E9B-7E5A-4AC6-8657-45E0AF768272}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96885E9B-7E5A-4AC6-8657-45E0AF768272}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96885E9B-7E5A-4AC6-8657-45E0AF768272}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96885E9B-7E5A-4AC6-8657-45E0AF768272}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96885E9B-7E5A-4AC6-8657-45E0AF768272}.Unity|Any CPU.ActiveCfg = Debug|Any CPU
+		{96885E9B-7E5A-4AC6-8657-45E0AF768272}.Unity|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
