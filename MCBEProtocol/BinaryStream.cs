@@ -135,9 +135,16 @@ namespace MCBEProtocol
             Offset += len;
         }
 
-        public void WriteString(string value, Encoding encoding)
+        public void WriteStringUInt16(string value, Encoding encoding)
         {
-            int len = BinaryUtil.WriteString(ref Buffer, Offset, value, encoding);
+            int len = BinaryUtil.WriteStringUInt16(ref Buffer, Offset, value, encoding);
+            Length = Math.Max(Length, Offset + len);
+            Offset += len;
+        }
+
+        public void WriteStringUVarInt(string value, Encoding encoding)
+        {
+            int len = BinaryUtil.WriteStringUVarInt(ref Buffer, Offset, value, encoding);
             Length = Math.Max(Length, Offset + len);
             Offset += len;
         }
@@ -260,9 +267,18 @@ namespace MCBEProtocol
             return value;
         }
 
-        public string ReadString(Encoding encoding, int length)
+        public string ReadStringUInt16(Encoding encoding)
         {
-            return encoding.GetString(ReadBytes(length));
+            var value = BinaryUtil.ReadStringUInt16(ref Buffer, Offset, out int len);
+            Offset += len;
+            return value;
+        }
+
+        public string ReadStringUVarInt(Encoding encoding)
+        {
+            var value = BinaryUtil.ReadStringUVarInt(ref Buffer, Offset, out int len);
+            Offset += len;
+            return value;
         }
 
         public Guid ReadGuid()
