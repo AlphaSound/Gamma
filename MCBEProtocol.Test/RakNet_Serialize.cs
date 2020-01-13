@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Text;
 using Xunit;
-using ZeroFormatter;
 using MCBEProtocol.RakNet;
 
 namespace MCBEProtocol.Test

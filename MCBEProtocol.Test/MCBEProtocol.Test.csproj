@@ -17,13 +17,4 @@
     <ProjectReference Include="..\MCBEProtocol\MCBEProtocol.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="ZeroFormatter">
-      <HintPath>..\..\..\working\ZeroFormatter\src\ZeroFormatter\bin\Debug\ZeroFormatter.dll</HintPath>
-    </Reference>
-    <Reference Include="ZeroFormatter.Interfaces">
-      <HintPath>..\..\..\working\ZeroFormatter\src\ZeroFormatter\bin\Debug\ZeroFormatter.Interfaces.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
