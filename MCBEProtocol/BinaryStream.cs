@@ -6,8 +6,8 @@ namespace MCBEProtocol
 {
     public class BinaryStream
     {
-        protected int Offset;
-        protected int Length;
+        public int Offset { get; protected set; }
+        public int Length { get; protected set; }
         protected byte[] Buffer;
 
         public void Clear()
@@ -135,11 +135,21 @@ namespace MCBEProtocol
             Offset += len;
         }
 
+        public void WriteStringUInt16(string value)
+        {
+            WriteStringUInt16(value, Encoding.UTF8);
+        }
+
         public void WriteStringUInt16(string value, Encoding encoding)
         {
             int len = BinaryUtil.WriteStringUInt16(ref Buffer, Offset, value, encoding);
             Length = Math.Max(Length, Offset + len);
             Offset += len;
+        }
+
+        public void WriteStringUVarInt(string value)
+        {
+            WriteStringUVarInt(value, Encoding.UTF8);
         }
 
         public void WriteStringUVarInt(string value, Encoding encoding)
@@ -267,11 +277,21 @@ namespace MCBEProtocol
             return value;
         }
 
+        public string ReadStringUInt16()
+        {
+            return ReadStringUInt16(Encoding.UTF8);
+        }
+
         public string ReadStringUInt16(Encoding encoding)
         {
             var value = BinaryUtil.ReadStringUInt16(ref Buffer, Offset, out int len);
             Offset += len;
             return value;
+        }
+
+        public string ReadStringUVarInt()
+        {
+            return ReadStringUVarInt(Encoding.UTF8);
         }
 
         public string ReadStringUVarInt(Encoding encoding)
