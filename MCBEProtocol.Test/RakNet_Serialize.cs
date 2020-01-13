@@ -16,11 +16,16 @@ namespace MCBEProtocol.Test
         [Fact]
         public void Test()
         {
-            /*byte[] bytes = null;
+            var bs = new BinaryStream();
 
-            var unconnectedPong = new UnconnectedPong(0x0123456789ff, 1, Constants.Magic, "MCBEProtocol Test Server");
-            bytes = ZeroFormatterSerializer.Serialize(unconnectedPong);
-            Assert.Equal(bytes, new byte[]
+            new UnconnectedPong
+            {
+                Timestamp = 0x0123456789ff,
+                PongId = 1,
+                Magic = Constants.Magic,
+                ServerName = "MCBEProtocol Test Server"
+            }.Encode(bs);
+            Assert.Equal(bs.GetBuffer(), new byte[]
             {
                 // Timestamp
                 0xff, 0x89, 0x67, 0x45, 0x23, 0x01, 0x00, 0x00,
@@ -33,10 +38,15 @@ namespace MCBEProtocol.Test
                 // ServerName
                 0x4d, 0x43, 0x42, 0x45, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x63, 0x6f, 0x6c, 0x20, 0x54, 0x65, 0x73, 0x74, 0x20, 0x53, 0x65, 0x72, 0x76, 0x65, 0x72
             });
+            bs.Clear();
 
-            var unconnectedPing = new UnconnectedPing(0x0123456789ff, Constants.Magic, 0xfedcba98765432);
-            bytes = ZeroFormatterSerializer.Serialize(unconnectedPing);
-            Assert.Equal(bytes, new byte[]
+            new UnconnectedPing
+            {
+                Timestamp = 0x0123456789ff,
+                Magic = Constants.Magic,
+                ClientId = 0xfedcba98765432
+            }.Encode(bs);
+            Assert.Equal(bs.GetBuffer(), new byte[]
             {
                 // Timestamp
                 0xff, 0x89, 0x67, 0x45, 0x23, 0x01, 0x00, 0x00,
@@ -44,7 +54,8 @@ namespace MCBEProtocol.Test
                 0x00, 0xff, 0xff, 0x00, 0xfe, 0xfe, 0xfe, 0xfe, 0xfd, 0xfd, 0xfd, 0xfd, 0x12, 0x34, 0x56, 0x78, 
                 // ClientId
                 0x32, 0x54, 0x76, 0x98, 0xba, 0xdc, 0xfe, 0x00
-            });*/
+            });
+            bs.Clear();
         }
     }
 }
