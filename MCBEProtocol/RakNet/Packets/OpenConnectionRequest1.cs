@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-
-namespace MCBEProtocol.RakNet
+namespace MCBEProtocol.RakNet.Packets
 {
     public class OpenConnectionRequest1 : Packet<OpenConnectionRequest1>
     {

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MCBEProtocol
 {
-    public abstract class Packet<T> where T : new()
+    public abstract class Packet<T> : IPacket where T : new()
     {
         public abstract void Encode(BinaryStream stream);
 

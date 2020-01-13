@@ -1,20 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Net;
-using MCBEProtocol.RakNet.StreamExtensions;
 
-namespace MCBEProtocol.RakNet
+namespace MCBEProtocol.RakNet.Packets
 {
-    public class OpenConnectionReply2 : Packet<OpenConnectionReply2>
+    public class OpenConnectionReply1 : Packet<OpenConnectionReply1>
     {
         public Guid Magic { get; set; }
 
         public ulong ServerId { get; set; }
 
-        public IPEndPoint ClientAddress { get; set; }
-
-        public bool UseEncryption { get; set; }
+        public bool UseSecurity { get; set; }
 
         public ushort MTUSize { get; set; }
 
@@ -22,8 +18,7 @@ namespace MCBEProtocol.RakNet
         {
             stream.WriteGuid(Magic);
             stream.WriteUInt64(ServerId);
-            stream.WriteAddress(ClientAddress);
-            stream.WriteBoolean(UseEncryption);
+            stream.WriteBoolean(UseSecurity);
             stream.WriteUInt16(MTUSize);
         }
 
@@ -31,8 +26,7 @@ namespace MCBEProtocol.RakNet
         {
             Magic = stream.ReadGuid();
             ServerId = stream.ReadUInt64();
-            ClientAddress = stream.ReadAddress();
-            UseEncryption = stream.ReadBoolean();
+            UseSecurity = stream.ReadBoolean();
             MTUSize = stream.ReadUInt16();
         }
     }
