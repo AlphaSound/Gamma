@@ -2,28 +2,29 @@
 using System.Collections.Generic;
 using System.Text;
 
+
 namespace MCBEProtocol.RakNet
 {
-    public class UnconnectedPing : Packet<UnconnectedPing>
+    public class OpenConnectionRequest1 : Packet<OpenConnectionRequest1>
     {
-        public long Timestamp { get; set; }
-
         public Guid Magic { get; set; }
 
-        public ulong ClientId { get; set; }
+        public byte Protocol { get; set; }
+
+        public byte[] NullPadding { get; set; }
 
         public override void Encode(BinaryStream stream)
         {
-            stream.WriteInt64(Timestamp);
             stream.WriteGuid(Magic);
-            stream.WriteUInt64(ClientId);
+            stream.WriteByte(Protocol);
+            stream.WriteBytes(NullPadding);
         }
 
         public override void Decode(BinaryStream stream)
         {
-            Timestamp = stream.ReadInt64();
             Magic = stream.ReadGuid();
-            ClientId = stream.ReadUInt64();
+            Protocol = stream.ReadByte();
+            NullPadding = stream.ReadBytes(stream.Length - stream.Offset);
         }
     }
 }

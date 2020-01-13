@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MCBEProtocol.RakNet
 {
-    public class UnconnectedPong
+    public class UnconnectedPong : Packet<UnconnectedPong>
     {
         public long Timestamp { get; set; }
 
@@ -14,14 +14,20 @@ namespace MCBEProtocol.RakNet
 
         public string ServerName { get; set; }
 
-        public UnconnectedPong() { }
-
-        public UnconnectedPong(long timestamp, ulong pongId, Guid magic, string serverName)
+        public override void Encode(BinaryStream stream)
         {
-            Timestamp = timestamp;
-            PongId = pongId;
-            Magic = magic;
-            ServerName = serverName;
+            stream.WriteInt64(Timestamp);
+            stream.WriteUInt64(PongId);
+            stream.WriteGuid(Magic);
+            stream.WriteStringUInt16(ServerName);
+        }
+
+        public override void Decode(BinaryStream stream)
+        {
+            Timestamp = stream.ReadInt64();
+            PongId = stream.ReadUInt64();
+            Magic = stream.ReadGuid();
+            ServerName = stream.ReadStringUInt16();
         }
     }
 }

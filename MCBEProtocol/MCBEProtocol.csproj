@@ -17,17 +17,4 @@
     <Folder Include="Minecraft\" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="ZeroFormatter.Analyzer" Version="1.1.1" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="ZeroFormatter">
-      <HintPath>..\..\..\working\ZeroFormatter\src\ZeroFormatter\bin\Debug\ZeroFormatter.dll</HintPath>
-    </Reference>
-    <Reference Include="ZeroFormatter.Interfaces">
-      <HintPath>..\..\..\working\ZeroFormatter\src\ZeroFormatter\bin\Debug\ZeroFormatter.Interfaces.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
 </Project>
