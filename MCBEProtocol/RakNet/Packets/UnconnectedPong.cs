@@ -12,14 +12,14 @@ namespace MCBEProtocol.RakNet.Packets
 
         public Guid Magic { get; set; }
 
-        public string ServerName { get; set; }
+        public string ServerInfo { get; set; }
 
         public override void Encode(BinaryStream stream)
         {
             stream.WriteInt64(Timestamp);
             stream.WriteUInt64(PongId);
             stream.WriteGuid(Magic);
-            stream.WriteStringUInt16(ServerName);
+            stream.WriteStringUInt16(ServerInfo);
         }
 
         public override void Decode(BinaryStream stream)
@@ -27,7 +27,7 @@ namespace MCBEProtocol.RakNet.Packets
             Timestamp = stream.ReadInt64();
             PongId = stream.ReadUInt64();
             Magic = stream.ReadGuid();
-            ServerName = stream.ReadStringUInt16();
+            ServerInfo = stream.ReadStringUInt16();
         }
     }
 }

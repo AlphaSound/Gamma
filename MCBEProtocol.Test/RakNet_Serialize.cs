@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Xunit;
 using MCBEProtocol.RakNet;
+using MCBEProtocol.RakNet.Packets;
 
 namespace MCBEProtocol.Test
 {
@@ -23,7 +24,7 @@ namespace MCBEProtocol.Test
                 Timestamp = 0x0123456789ff,
                 PongId = 1,
                 Magic = Constants.Magic,
-                ServerName = "MCBEProtocol Test Server"
+                ServerInfo = "MCBEProtocol Test Server"
             }.Encode(bs);
             Assert.Equal(bs.GetBuffer(), new byte[]
             {
